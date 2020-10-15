@@ -60,6 +60,12 @@ public class GradeBook {
     return (double) total / grades.length;
   }
 
+  public double normalizeGrade(int grade) {
+    double normalizedGrade = (double) grade / getMaximum() * 100;
+
+    return normalizedGrade;
+  }
+
   public void outputBarChart() {
     System.out.println("Grade distribution:");
 
@@ -86,9 +92,11 @@ public class GradeBook {
 
   public void outputGrades() {
     System.out.printf("The grades are:%n%n");
+    System.out.printf("%17s, %s%n", "Grade", "Normalized grade");
 
     for (int student = 0; student < grades.length; student++) {
-      System.out.printf("Student %2d: %3d%n", student + 1, grades[student]);
+      System.out.printf("Student %2d: %5d, %16.2f%n", 
+        student + 1, grades[student], normalizeGrade(grades[student]));
     }
   }
 }
